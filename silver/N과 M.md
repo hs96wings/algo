@@ -199,3 +199,123 @@ arr = []
 
 dfs()
 ```
+
+# [15663 N과 M (9)](https://www.acmicpc.net/problem/15663)
+
+직전 값과 새로운 값을 비교하면서 중복 수열인지 확인한다
+
+```python
+import sys
+input = sys.stdin.readline
+
+def dfs():
+    if len(arr) == m:
+        print(*arr)
+        return
+
+    tmp = 0
+    for i in range(n):
+        if not visited[i] and tmp != data[i]:
+            visited[i] = True
+            arr.append(data[i])
+            tmp = data[i]
+            dfs()
+            visited[i] = False
+            arr.pop()
+
+n, m = map(int, input().split())
+data = sorted(list(map(int, input().split())))
+arr = []
+visited = [False] * (n + 1)
+
+dfs()
+```
+
+# [15664 N과 M (10)](https://www.acmicpc.net/problem/15664)
+
+N과 M 6번 문제와 비슷하지만 같은 수가 있을 수 있으니 data[i] > arr[-1]에서  
+data[i] >= arr[-1]로 바꿔야 한다
+
+```python
+import sys
+input = sys.stdin.readline
+
+def dfs():
+    if len(arr) == m:
+        print(*arr)
+        return
+
+    tmp = 0
+    for i in range(n):
+        if not visited[i] and tmp != data[i] and (len(arr) == 0 or data[i] >= arr[-1]):
+            visited[i] = True
+            arr.append(data[i])
+            tmp = data[i]
+            dfs()
+            visited[i] = False
+            arr.pop()
+
+n, m = map(int, input().split())
+data = sorted(list(map(int, input().split())))
+arr = []
+visited = [False] * (n + 1)
+
+dfs()
+```
+
+# [15665 N과 M (11)](https://www.acmicpc.net/problem/15665)
+
+중복되는 수열을 여러 번 출력하면 안되지만 같은 수를 여러 번 골라도 되므로  
+tmp != data[i]만 유지한다
+
+```python
+import sys
+input = sys.stdin.readline
+
+def dfs():
+    if len(arr) == m:
+        print(*arr)
+        return
+
+    tmp = 0
+    for i in range(n):
+        if tmp != data[i]:
+            arr.append(data[i])
+            tmp = data[i]
+            dfs()
+            arr.pop()
+
+n, m = map(int, input().split())
+data = sorted(list(map(int, input().split())))
+arr = []
+
+dfs()
+```
+
+# [15666 N과 M (12)](https://www.acmicpc.net/problem/15666)
+
+N과 M 8번과 비슷
+
+```python
+import sys
+input = sys.stdin.readline
+
+def dfs():
+    if len(arr) == m:
+        print(*arr)
+        return
+
+    tmp = 0
+    for i in range(n):
+        if tmp != data[i] and (len(arr) == 0 or data[i] >= arr[-1]):
+            arr.append(data[i])
+            tmp = data[i]
+            dfs()
+            arr.pop()
+
+n, m = map(int, input().split())
+data = sorted(list(map(int, input().split())))
+arr = []
+
+dfs()
+```
